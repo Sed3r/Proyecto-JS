@@ -1,51 +1,60 @@
 const inventario = [];
 
-const agregarProducto = (nombre, precio, stock) => {
-    inventario.push({
-        nombre: nombre,
-        precio: precio,
-        stock: stock,
-    });
-};
-
-const mostrarListadoDeProductos = () => {
-    let listado = 'Listado de productos:\n';
-    for (let i = 0; i < inventario.length; i++) {
-        listado += `
-        - Nombre : ${inventario[i].nombre}
-        - Precio: $${inventario[i].precio}
-        - Stock: ${inventario[i].stock}
-        `;
-    }
-    return console.log(listado);
+function agregarProducto(nombre, precio, stock) {
+    inventario.push({ nombre, precio, stock });
+    console.log(`\n Producto agregado:\n- Nombre: ${nombre}\n- Precio: $${precio}\n- Stock: ${stock}`);
 }
 
-const eliminarProducto = (nombre) => {
+
+function mostrarListadoDeProductos() {
+    console.log("\n Listado de productos:");
+
+    if (inventario.length === 0) {
+        console.log(" No hay productos en el inventario.");
+        return;
+    }
+
+    for (let i = 0; i < inventario.length; i++) {
+        const producto = inventario[i];
+        console.log(`\nProducto ${i + 1}:`);
+        console.log(`- Nombre : ${producto.nombre}`);
+        console.log(`- Precio : $${producto.precio}`);
+        console.log(`- Stock  : ${producto.stock}`);
+    }
+}
+
+
+function eliminarProducto(nombre) {
     for (let i = 0; i < inventario.length; i++) {
         if (inventario[i].nombre === nombre) {
             inventario.splice(i, 1);
-            mostrarListadoDeProductos();
-            return console.log(`Producto ${nombre} eliminado.`);
+            console.log(`\n Producto "${nombre}" eliminado correctamente.`);
+            return;
         }
     }
-    console.log(`Producto ${nombre} no encontrado.`);
+    console.log(`\n Producto "${nombre}" no encontrado.`);
 }
 
-const modificarStock = (nombre, nuevoStock) => {
+
+function modificarStock(nombre, nuevoStock) {
     for (let i = 0; i < inventario.length; i++) {
         if (inventario[i].nombre === nombre) {
             inventario[i].stock = nuevoStock;
-            mostrarListadoDeProductos();
-            return console.log(`Stock del producto ${nombre} modificado a ${nuevoStock}.`);
+            console.log(`\n Stock del producto "${nombre}" actualizado a ${nuevoStock}.`);
+            return;
         }
     }
-    console.log(`Producto ${nombre} no encontrado.`);
+    console.log(`\n Producto "${nombre}" no encontrado.`);
 }
 
 
 agregarProducto("Mouse", 50000, 10);
 agregarProducto("Teclado", 100000, 20);
+agregarProducto("Monitor", 300000, 5);
+
 mostrarListadoDeProductos();
 
 modificarStock("Teclado", 25);
+eliminarProducto("Mouse");
+
 mostrarListadoDeProductos();
