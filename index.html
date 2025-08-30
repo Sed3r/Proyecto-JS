@@ -1,15 +1,69 @@
-<!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./styles.css">
-    <title>Document</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Simulador de inventario</title>
+<link rel="stylesheet" href="./css/styles.css" />
 </head>
 <body>
+<header class="wrap">
+<h1 id="titulo">Simulador de inventario</h1>
+<form id="form-nombre" class="row">
+<input id="nombre-usuario" placeholder="Tu nombre" minlength="2" />
+<button type="submit">Guardar nombre</button>
+</form>
+<p id="mensaje" role="status"></p>
+</header>
 
 
+<main class="wrap grid">
 
-<script src="./app.js"></script>
+<!-- Alta de producto -->
+<section class="card">
+<h2>Agregar producto</h2>
+<form id="form-producto" autocomplete="off">
+<label class="row">
+<span>Nombre</span>
+<input id="nombre" name="nombre" required minlength="2" />
+</label>
+<label class="row">
+<span>Precio ($)</span>
+<input id="precio" name="precio" type="number" min="0" step="0.01" required />
+</label>
+<label class="row">
+<span>Stock</span>
+<input id="stock" name="stock" type="number" min="0" step="1" required />
+</label>
+<button class="primary" type="submit">Guardar producto</button>
+</form>
+</section>
+
+
+<!-- Listado y acciones -->
+<section class="card">
+<div class="bar">
+<h2>Inventario</h2>
+<div class="row">
+<input id="buscador" placeholder="Buscar por nombre…" />
+<select id="orden">
+<option value="nombre-asc">Nombre (A–Z)</option>
+<option value="nombre-desc">Nombre (Z–A)</option>
+<option value="precio-asc">Precio (menor a mayor)</option>
+<option value="precio-desc">Precio (mayor a menor)</option>
+</select>
+</div>
+</div>
+<ul id="inventario" class="lista"></ul>
+</section>
+</main>
+
+
+<footer class="wrap foot">
+<small>Entrega N°2 — DOM + Eventos + LocalStorage + Módulos</small>
+<p>Calgaro Jonatan</p>
+</footer>
+
+
+<script type="module" src="./js/app.js"></script>
 </body>
 </html>
